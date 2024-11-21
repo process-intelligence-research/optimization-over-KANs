@@ -1,0 +1,7 @@
+{
+    "reformulation": "Big-M",
+    "exploit_sparsity": 0,
+    "redundant_cuts": 0,
+    "local_support": 0,
+    "silu_mccormick": 0
+}
