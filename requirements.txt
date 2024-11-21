@@ -8,3 +8,5 @@ tensorflow==2.17.0
 omlt==1.2.0
 onnx==1.16.2
 tf2onnx==1.16.1
+matplotlib
+tqdm
