@@ -1,0 +1,10 @@
+numpy==1.26.4
+torch==2.3.0
+pykan==0.0.2
+pyomo==6.8.0
+pandas==2.2.2
+scikit-learn==1.5.2
+tensorflow==2.17.0
+omlt==1.2.0
+onnx==1.16.2
+tf2onnx==1.16.1
