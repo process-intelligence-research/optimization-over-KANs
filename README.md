@@ -1,9 +1,32 @@
-# optimization-over-KANs
+# optimization-over-KANs by [<img src="./docs/logos/Process_Intelligence_Black_Horizontal.png" alt="Process Intelligence Research logo" height="40">](https://www.pi-research.org/)
+
+<p align="center">
+  <img src="./docs/logos/pydexpi_logo.png" alt="pyDEXPI logo" width="700">  
+</p>
+
+## Overview
+
 This repository contains the [Pyomo](https://github.com/Pyomo/pyomo) files describing the proposed Mixed-Integer Nonlinear Programming formulation in the paper **`Deterministic Global Optimization over trained Kolmogorov Arnold Networks`** (TODO: Add the link to preprint once submitted). <br>
 In addition, the repository also contain Python scripts to train multi-layer perceptrons (MLP) using Tensorflow and then optimizing over the trained MLPs using [OMLT](https://github.com/cog-imperial/OMLT). <br>
 Effectively, this repository contains all the files needed to reproduce the results in the paper:<br>
 (TODO: Add a BibTeX reference to the pre-print) <br>
 If you use the formulation from this paper, please consider citing it as described above. <br>
+
+### Features:
+- **XXX** as [Pyomo](https://github.com/Pyomo/pyomo) models.
+
+### Citation
+Please reference this software package as:
+```
+@InProceedings{pyDEXPI,
+  author    = { and Schweidtmann, Artur M},
+  booktitle = {},
+  title     = {},
+  year      = {2025},
+  address   = {},
+  month     = {},
+}
+```
 
 ## Details about the files in the repository
 The description of different files in this repository is provided below to help reproduce the results from the paper:<br>
@@ -20,4 +43,26 @@ The description of different files in this repository is provided below to help 
 10. `train_tf_mlp.py` - A Python script to train a MLP using Tensorflow. The training and test data along with the scaling strategy (in a JSON file) needs to be provided by the user. Look at the data provided in the Electronic Supplementary Information for the paper for additional details. 
 11. `mlp_opt.py` - A Python script to import the tensorflow object into OMLT and optimize over it.
 
-Please contact [Tanuj Karia](mailto:t.karia@tudelft.nl) if you need any help in running this repository.
+
+## Contributors
+
+| | | |
+| --- | --- | --- |
+| <img src="docs/photos/Tanuj.jpg" width="50"> | [Tanuj Karia](https://www.pi-research.org/author/dominik-goldstein/) | <a href="https://www.linkedin.com/in/tanujkaria/" rel="nofollow noreferrer"> <img src="https://i.sstatic.net/gVE0j.png" >  </a> <a href="https://scholar.google.com/citations?user=4s7fSyIAAAAJ&hl=en" rel="nofollow noreferrer"> <img src="docs/logos/google-scholar-square.svg" width="14">  </a> |
+| <img src="docs/photos/Artur.jpg" width="50"> | [Artur M. Schweidtmann](https://www.pi-research.org/author/artur-schweidtmann/) | <a href="https://www.linkedin.com/in/schweidtmann/" rel="nofollow noreferrer"> <img src="https://i.sstatic.net/gVE0j.png" >  </a> <a href="https://scholar.google.com/citations?user=g-GwouoAAAAJ&hl=en" rel="nofollow noreferrer"> <img src="docs/logos/google-scholar-square.svg" width="14">  </a> |
+
+## Copyright and license
+
+This repository is published under MIT license (see [license file](LICENSE))
+
+Copyright (C) 2025 Artur Schweidtmann Delft University of Technology. 
+
+## Contact
+
+📧 [Contact](mailto:a.schweidtmann@tudelft.nl)
+
+🌐 [PI research](https://pi-research.org)
+
+<p align="left">
+<a href="https://twitter.com/ASchweidtmann" target="blank"><img align="center" src="https://img.shields.io/badge/X-000000?style=for-the-badge&logo=x&logoColor=white" alt="fernandezbap" /></a>
+</p>
