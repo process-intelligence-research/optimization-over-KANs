@@ -1,23 +1,60 @@
+"""Module to optimise MLPs trained in Tensorflow using OMLT."""
 import argparse
 import json
+import os
 from omlt import OffsetScaling, OmltBlock
 from omlt.io.keras import load_keras_sequential
-from omlt.neuralnet import ReluBigMFormulation, ReluPartitionFormulation, ReluComplementarityFormulation
+from omlt.neuralnet import (
+    ReluBigMFormulation,
+    ReluPartitionFormulation,
+    ReluComplementarityFormulation
+)
 import pyomo.environ as pyo
-from tensorflow import keras
-import os
+from tensorflow import keras # pylint: disable=no-name-in-module
 
 # Set up argument parsing for command-line execution
 parser = argparse.ArgumentParser(description="Load Keras model, scaler, and solver parameters.")
-parser.add_argument('--keras_model', type=str, required=True, help="Path to the Keras model file.")
-parser.add_argument('--scaler_file', type=str, required=True, help="Path to the scaler JSON file.")
-parser.add_argument('--formulation', type=str, required=True, choices=['bigm', 'partition', 'complementarity'], 
-                    help="Type of formulation to use: 'bigm', 'partition', or 'complementarity'.")
-parser.add_argument('--solver', type=str, required=True, help="Solver to use (e.g., scip, gurobi, cplex).")
-parser.add_argument('--num_inputs', type=int, required=True, help="Number of input variables.")
-parser.add_argument('--input_lb', type=float, required=True, help="Lower bound of the input variables.")
-parser.add_argument('--input_ub', type=float, required=True, help="Upper bound of the input variables.")
-parser.add_argument('--time_limit', type=int, default=7200, help="Time limit for the solver in seconds (default: 7200).")
+parser.add_argument(
+    '--keras_model',
+    type=str,
+    required=True,
+    help="Path to the Keras model file.")
+parser.add_argument(
+    '--scaler_file',
+    type=str,
+    required=True,
+    help="Path to the scaler JSON file.")
+parser.add_argument(
+    '--formulation',
+    type=str,
+    required=True,
+    choices=['bigm', 'partition', 'complementarity'],
+    help="Type of formulation to use: 'bigm', 'partition', or 'complementarity'.")
+parser.add_argument(
+    '--solver',
+    type=str,
+    required=True,
+    help="Solver to use (e.g., scip, gurobi, cplex).")
+parser.add_argument(
+    '--num_inputs',
+    type=int,
+    required=True,
+    help="Number of input variables.")
+parser.add_argument(
+    '--input_lb',
+    type=float,
+    required=True,
+    help="Lower bound of the input variables.")
+parser.add_argument(
+    '--input_ub',
+    type=float,
+    required=True,
+    help="Upper bound of the input variables.")
+parser.add_argument(
+    '--time_limit',
+    type=int,
+    default=7200,
+    help="Time limit for the solver in seconds (default: 7200).")
 
 args = parser.parse_args()
 
@@ -38,7 +75,7 @@ m.surrogate = OmltBlock()
 nn = keras.models.load_model(args.keras_model, compile=False)
 
 # Load the scaler information from the JSON file
-with open(args.scaler_file, 'r') as file:
+with open(args.scaler_file, 'r', encoding="utf-8") as file:
     scaler_dict = json.load(file)
 
 # Print the loaded scaler details for verification
@@ -69,15 +106,16 @@ scaled_input_bounds = {i: (scaled_lb[i], scaled_ub[i]) for i in range(args.num_i
 net = load_keras_sequential(nn, scaling_object=scaler, scaled_input_bounds=scaled_input_bounds)
 
 # Choose the formulation type based on the user's input
+FORMULATION = None
 if args.formulation == 'bigm':
-    formulation = ReluBigMFormulation(net)
+    FORMULATION = ReluBigMFormulation(net)
 elif args.formulation == 'partition':
-    formulation = ReluPartitionFormulation(net)
+    FORMULATION = ReluPartitionFormulation(net)
 elif args.formulation == 'complementarity':
-    formulation = ReluComplementarityFormulation(net)
+    FORMULATION = ReluComplementarityFormulation(net)
 
 # Build the surrogate model in Pyomo using the selected formulation
-m.surrogate.build_formulation(formulation)
+m.surrogate.build_formulation(FORMULATION)
 
 # Define the objective function (maximize/minimize the neural network output)
 # Customize this function based on your specific use case
@@ -104,7 +142,7 @@ for i in range(args.num_inputs):
 results_dict['f*'] = m.surrogate.outputs[0].value  # Output value
 
 # Save the results to a JSON file
-with open(json_file_name, 'w') as f:
+with open(json_file_name, 'w', encoding="utf-8") as f:
     json.dump(results_dict, f, default=str, indent=4)
 
 print(f"Results saved to {json_file_name}.")
