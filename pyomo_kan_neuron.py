@@ -1,4 +1,5 @@
-""" Module modelling a neuron in a Kolmogorov Arnold Network"""
+""" Module modelling a neuron in a Kolmogorov Arnold Network 
+    in Pyomo to embed in optimisation models"""
 
 import pyomo.environ as pyo
 
