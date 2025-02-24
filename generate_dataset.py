@@ -1,15 +1,19 @@
+"""This module generates the dataset given a symbolic function.
+   Examples of symbolic functions include peaks function, rosenbrock function, etc.
+   This module also returns the mean and standard deviation of the data generated."""
+
 import numpy as np
 import torch
 
 def create_custom_dataset(
-    f, 
-    n_var=2, 
-    ranges=[-1, 1], 
-    train_num=1000, 
-    test_num=1000, 
-    normalize_input=False, 
-    normalize_label=False, 
-    device='cpu', 
+    f,
+    n_var=2,
+    ranges=None,
+    train_num=1000,
+    test_num=1000,
+    normalize_input=False,
+    normalize_label=False,
+    device='cpu',
     seed=0
 ):
     '''
@@ -61,24 +65,22 @@ def create_custom_dataset(
     torch.manual_seed(seed)
 
     # Normalize ranges
+    if range is None:
+        ranges = [-1,1] # Initializing default value for the range
     if len(np.array(ranges).shape) == 1:
         ranges = np.array(ranges * n_var).reshape(n_var, 2)
     else:
         ranges = np.array(ranges)
-        
     # Initialize inputs
     train_input = torch.zeros(train_num, n_var)
     test_input = torch.zeros(test_num, n_var)
-    
     # Generate data within the specified ranges
     for i in range(n_var):
         train_input[:, i] = torch.rand(train_num) * (ranges[i, 1] - ranges[i, 0]) + ranges[i, 0]
         test_input[:, i] = torch.rand(test_num) * (ranges[i, 1] - ranges[i, 0]) + ranges[i, 0]
-        
     # Compute labels
     train_label = f(train_input)
     test_label = f(test_input)
-    
     # Normalization helper
     def normalize(data, mean, std):
         return (data - mean) / std
@@ -90,7 +92,6 @@ def create_custom_dataset(
         std_input = torch.std(train_input, dim=0, keepdim=True)
         train_input = normalize(train_input, mean_input, std_input)
         test_input = normalize(test_input, mean_input, std_input)
-        
     # Normalize labels if specified
     if normalize_label:
         mean_label = torch.mean(train_label, dim=0, keepdim=True)
