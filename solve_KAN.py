@@ -1,7 +1,12 @@
-import pyomo.environ as pyo
+"""This module reads a KAN model in Pyomo using the create_kan module
+   and invokes the solve statement in Pyomo to solve them.
+   The main purpose of this module is to allow the solution of KAN models
+   from the command line using the json file describing the KAN model, 
+   the json file containing the formulation options, and the solver name as arguments."""
 import argparse
 import json
-from create_KAN import main
+import pyomo.environ as pyo
+from create_kan import main
 
 # Function to parse command-line arguments
 def parse_args():
@@ -9,12 +14,15 @@ def parse_args():
     Parses command-line arguments for the script.
 
     Returns:
-        argparse.Namespace: Parsed arguments containing paths to the JSON data file, options file, and the solver name.
+        argparse.Namespace: 
+        Parsed arguments containing paths to the JSON data file, options file, and the solver name.
     """
-    parser = argparse.ArgumentParser(description='Solve the Pyomo model using the specified solver.')
+    parser = argparse.ArgumentParser(
+        description='Solve the Pyomo model using the specified solver.')
     parser.add_argument('json_file', type=str, help='Path to the JSON data file.')
     parser.add_argument('options_file', type=str, help='Path to the options JSON file.')
-    parser.add_argument('solver', type=str, help='Solver to use for solving the Pyomo model (e.g., "glpk", "ipopt").')
+    parser.add_argument(
+        'solver', type=str, help='Solver to use for solving the Pyomo model (e.g., "ipopt").')
     return parser.parse_args()
 
 # Main function to solve the Pyomo model
@@ -36,30 +44,23 @@ def solve_model(json_file, options_file, solver_name):
     """
     # Create the Pyomo model using the data and options
     model = main(json_file, options_file)
-    
     # Initialize the solver
     solver = pyo.SolverFactory(solver_name)
-    
     # Check if the solver is available
     if not solver.available():
         raise ValueError(f"Solver {solver_name} is not available.")
-    
     # Define output file names
     log_file = json_file.replace('.json', '.log')  # Solver log file
     results_file = json_file.replace('.json', '_results.json')  # Results file
-    
     # Solve the model
     result = solver.solve(model, tee=True, timelimit=7200, logfile=log_file)
-    
     # Check the solver's termination condition
     if result.solver.termination_condition == pyo.TerminationCondition.optimal:
         print("Optimal solution found.")
     else:
         print(f"Solver terminated with condition: {result.solver.termination_condition}")
-    
     # Extract results and store them in a dictionary
     results_dict = {}
-    
     # Retrieve values for specific unscaled inputs and outputs
     results_dict['f*'] = model.unscaled_outputs[0].value
     results_dict['x1'] = model.unscaled_inputs[0].value
@@ -73,9 +74,8 @@ def solve_model(json_file, options_file, solver_name):
     # results_dict['x8'] = model.unscaled_inputs[7].value
     # results_dict['x9'] = model.unscaled_inputs[8].value
     # results_dict['x10'] = model.unscaled_inputs[9].value
-    
     # Write the results to a JSON file
-    with open(results_file, 'w') as f:
+    with open(results_file, 'w', encoding="utf-8") as f:
         json.dump(results_dict, f, default=str, indent=4)
     print(f"Results saved to {results_file}")
 
