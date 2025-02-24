@@ -1,6 +1,7 @@
+""" Module modelling a layer in a Kolmogorov Arnold Network 
+    in Pyomo to embed in optimisation models importing the neuron class"""
 import pyomo.environ as pyo
-import json
-from Pyomo_KAN_neuron import NeuronBlockRule
+from pyomo_kan_neuron import NeuronBlockRule
 
 class LayerBlockRule:
     """
@@ -77,5 +78,7 @@ class LayerBlockRule:
         for j in range(num_outputs):
             # Each layer output is the sum of outputs from all neurons in the layer, plus a bias
             block.constraints.add(
-                block.layer_outputs[j] == sum(block.neurons[j, i].neuron_output for i in range(num_inputs)) + bias_dict[f"{nl},{j}"]
+                block.layer_outputs[j] == sum(
+                    block.neurons[j, i].neuron_output
+                    for i in range(num_inputs)) + bias_dict[f"{nl},{j}"]
             )
