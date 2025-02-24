@@ -1,11 +1,15 @@
+"""Module to train MLPs using Tensorflow for the case studies considered in the paper."""
+import os
+import random
+import pandas as pd
+import numpy as np
 import tensorflow as tf
+# pylint: disable=import-error
+# pylint: disable=no-name-in-module
+# pylint: disable=no-member
 from tensorflow.keras import Sequential
 from tensorflow.keras.layers import Dense
 from sklearn.metrics import mean_squared_error
-import pandas as pd
-import numpy as np
-import random
-import os
 
 # Set random seeds for reproducibility
 def set_seeds(seed=42):
@@ -74,20 +78,20 @@ def count_trainable_params(model):
     return np.sum([np.prod(v.shape) for v in model.trainable_weights])
 
 # Training and testing loop
-def train_mlp_with_neurons(X_train, y_train, X_test, y_test, neurons, onnx_model_path, batch_size):
+def train_mlp_with_neurons(train_x, train_y, test_x, test_y, neurons, onnx_model_path, batch_size):
     """
     Trains an MLP model with the specified number of neurons and saves the trained model.
 
     Args:
-        X_train (array-like): Training input features.
-        y_train (array-like): Training target values.
-        X_test (array-like): Testing input features.
-        y_test (array-like): Testing target values.
+        train_x (array-like): Training input features.
+        train_y (array-like): Training target values.
+        test_x (array-like): Testing input features.
+        test_y (array-like): Testing target values.
         neurons (int): Number of neurons in each hidden layer.
         onnx_model_path (str): Path to save the trained model.
         batch_size (int): Batch size for training.
     """
-    input_dim = X_train.shape[1]  # Number of features in the input data
+    input_dim = train_x.shape[1]  # Number of features in the input data
 
     print(f"\nTraining with {neurons} neurons in the hidden layer...")
 
@@ -99,8 +103,8 @@ def train_mlp_with_neurons(X_train, y_train, X_test, y_test, neurons, onnx_model
     print(f"Trainable parameters: {trainable_params}")
 
     # Train the model for 100 epochs
-    history = model.fit(X_train, y_train, epochs=100, verbose=0, batch_size=batch_size, 
-                        validation_data=(X_test, y_test))
+    history = model.fit(train_x, train_y, epochs=100, verbose=0, batch_size=batch_size,
+                        validation_data=(test_x, test_y))
 
     # Display final training and validation RMSE
     print('Final Training RMSE: ', history.history['root_mean_squared_error'][-1])
@@ -115,27 +119,28 @@ def load_data_from_csv(train_csv, test_csv):
     """
     Loads training and testing data from CSV files.
 
-    Assumes the last column in the CSV files is the target variable (y), and all other columns are features (X).
+    Assumes the last column in the CSV files is the
+    target variable (y), and all other columns are features (X).
 
     Args:
         train_csv (str): Path to the training data CSV file.
         test_csv (str): Path to the testing data CSV file.
 
     Returns:
-        tuple: (X_train, y_train, X_test, y_test) - Input features and target values for training and testing.
+        tuple: (X_train, y_train, X_test, y_test) - 
+        Input features and target values for training and testing.
     """
     # Load the CSV data into Pandas DataFrames
     train_data = pd.read_csv(train_csv)
     test_data = pd.read_csv(test_csv)
 
     # Split data into features (X) and target (y)
-    X_train = train_data.iloc[:, :-1].values  # Features (all columns except the last)
-    y_train = train_data.iloc[:, -1].values   # Target (last column)
-    
-    X_test = test_data.iloc[:, :-1].values  # Features (all columns except the last)
-    y_test = test_data.iloc[:, -1].values   # Target (last column)
+    train_x = train_data.iloc[:, :-1].values  # Features (all columns except the last)
+    train_y = train_data.iloc[:, -1].values   # Target (last column)
+    test_x = test_data.iloc[:, :-1].values  # Features (all columns except the last)
+    test_y = test_data.iloc[:, -1].values   # Target (last column)
 
-    return X_train, y_train, X_test, y_test
+    return train_x, train_y, test_x, test_y
 
 # Example usage of the script
 if __name__ == "__main__":
@@ -143,20 +148,20 @@ if __name__ == "__main__":
     set_seeds(42)  # You can use any seed value for reproducibility
 
     # File paths for training and testing datasets
-    train_csv = 'peaks_train.csv'  # Path to the training dataset
-    test_csv = 'peaks_test.csv'  # Path to the testing dataset
+    TRAIN_CSV = 'peaks_train.csv'  # Path to the training dataset
+    TEST_CSV = 'peaks_test.csv'  # Path to the testing dataset
 
     # Load the data from CSV files
-    X_train, y_train, X_test, y_test = load_data_from_csv(train_csv, test_csv)
+    x_train, y_train, x_test, y_test = load_data_from_csv(TRAIN_CSV, TEST_CSV)
 
     # Path to save the trained ONNX model
-    model_path = "peaks_mlp_relu_3_64.keras"
+    MODEL_PATH = "peaks_mlp_relu_3_64.keras"
 
     # Number of neurons in each hidden layer
-    neurons = 64
+    NEURONS = 64
 
     # Batch size for training
-    batch_size = 80
+    BATCH_SIZE = 80
 
     # Train the MLP model
-    train_mlp_with_neurons(X_train, y_train, X_test, y_test, neurons, model_path, batch_size)
+    train_mlp_with_neurons(x_train, y_train, x_test, y_test, NEURONS, MODEL_PATH, BATCH_SIZE)
