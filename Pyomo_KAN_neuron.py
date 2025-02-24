@@ -1,3 +1,5 @@
+""" Module modelling a neuron in a Kolmogorov Arnold Network"""
+
 import pyomo.environ as pyo
 
 class NeuronBlockRule:
@@ -13,7 +15,6 @@ class NeuronBlockRule:
         model_data (dict): Data dictionary containing model parameters and constraints.
         options (dict): Configuration options for formulating the block.
     """
-    
     def __init__(self, block, nl, no, ni, model_data, options):
         """
         Initialize the neuron block with necessary parameters and constraints.
@@ -36,7 +37,8 @@ class NeuronBlockRule:
 
     def apply_big_m_reformulation(self):
         """
-        Apply Big-M reformulation to enforce constraints on the neuron's spline input-output relationship.
+        Apply Big-M reformulation to enforce constraints 
+        on the neuron's spline input-output relationship.
         """
         block = self.block
         nl = self.nl
@@ -47,8 +49,13 @@ class NeuronBlockRule:
         knots_dict = self.model_data['knots_dict']
 
         for i in range(degree + coefs_size):
-            block.constraints.add(block.input >= (knots_dict[f"{nl},{no},{ni},{i}"] - knots_dict[f"{nl},{no},{ni},0"]) * block.N[i, 0] + knots_dict[f"{nl},{no},{ni},0"])
-            block.constraints.add(block.input <= (knots_dict[f"{nl},{no},{ni},{i + 1}"] - knots_dict[f"{nl},{no},{ni},{degree + coefs_size}"]) * block.N[i, 0] + knots_dict[f"{nl},{no},{ni},{degree + coefs_size}"])
+            block.constraints.add(
+                block.input >= (knots_dict[f"{nl},{no},{ni},{i}"] - knots_dict[f"{nl},{no},{ni},0"])
+                * block.N[i, 0] + knots_dict[f"{nl},{no},{ni},0"])
+            block.constraints.add(
+                block.input <= (knots_dict[f"{nl},{no},{ni},{i + 1}"]
+                                - knots_dict[f"{nl},{no},{ni},{degree + coefs_size}"])
+                * block.N[i, 0] + knots_dict[f"{nl},{no},{ni},{degree + coefs_size}"])
 
     def apply_convex_hull_reformulation(self):
         """
@@ -68,8 +75,10 @@ class NeuronBlockRule:
         block.z = pyo.Var(block.indices, domain=pyo.Reals)
 
         for i in range(degree + coefs_size):
-            block.constraints.add(block.z[i] <= knots_dict[f"{nl},{no},{ni},{i + 1}"] * block.N[i, 0])
-            block.constraints.add(block.z[i] >= knots_dict[f"{nl},{no},{ni},{i}"] * block.N[i, 0])
+            block.constraints.add(
+                block.z[i] <= knots_dict[f"{nl},{no},{ni},{i + 1}"] * block.N[i, 0])
+            block.constraints.add(
+                block.z[i] >= knots_dict[f"{nl},{no},{ni},{i}"] * block.N[i, 0])
 
         block.constraints.add(sum(block.z[i] for i in block.indices) == block.input)
 
@@ -109,7 +118,8 @@ class NeuronBlockRule:
         for dd in range(degree):
             for d in range(dd + 1, degree + 1):
                 for i in range(coefs_size):
-                    block.constraints.add(block.N[i, d] <= sum(block.N[j, dd] for j in range(i, i + d + 1 - dd)))
+                    block.constraints.add(
+                        block.N[i, d] <= sum(block.N[j, dd] for j in range(i, i + d + 1 - dd)))
 
     def strengthen_silu(self):
         """
@@ -131,14 +141,23 @@ class NeuronBlockRule:
         block.sigmoid = pyo.Var(bounds=(sigmoid_lb, sigmoid_ub))
         block.constraints.add(block.sigmoid == block.sigmoid_output)
 
-        block.constraints.add(block.silu_output <= x_ub * block.sigmoid + block.input * sigmoid_lb - x_ub * sigmoid_lb)
-        block.constraints.add(block.silu_output <= block.input * sigmoid_ub + x_lb * block.sigmoid - x_lb * sigmoid_ub)
-        block.constraints.add(block.silu_output >= x_lb * block.sigmoid + block.input * sigmoid_lb - x_lb * sigmoid_lb)
-        block.constraints.add(block.silu_output >= x_ub * block.sigmoid + block.input * sigmoid_ub - x_ub * sigmoid_ub)
+        block.constraints.add(
+            block.silu_output <= x_ub * block.sigmoid
+            + block.input * sigmoid_lb - x_ub * sigmoid_lb)
+        block.constraints.add(
+            block.silu_output <= block.input * sigmoid_ub
+            + x_lb * block.sigmoid - x_lb * sigmoid_ub)
+        block.constraints.add(
+            block.silu_output >= x_lb * block.sigmoid
+            + block.input * sigmoid_lb - x_lb * sigmoid_lb)
+        block.constraints.add(
+            block.silu_output >= x_ub * block.sigmoid
+            + block.input * sigmoid_ub - x_ub * sigmoid_ub)
 
     def initialize_block(self):
         """
-        Initialize the Pyomo block with variables, parameters, and constraints based on the specified reformulation and options.
+        Initialize the Pyomo block with variables, parameters,
+        and constraints based on the specified reformulation and options.
         """
         block = self.block
         nl, no, ni = self.nl, self.no, self.ni
@@ -157,7 +176,8 @@ class NeuronBlockRule:
 
         # Define indices
         indices = [(i, j) for j in range(degree + 1) for i in range(coefs_size + degree - j + 1)]
-        continuous_indices = [(i, j) for j in range(1, degree + 1) for i in range(coefs_size + degree - j + 1)]
+        continuous_indices = [(i, j) for j in range(1, degree + 1)
+                              for i in range(coefs_size + degree - j + 1)]
 
         block.overall_indices = pyo.Set(initialize=indices)
         block.continuous_indices = pyo.Set(initialize=continuous_indices)
@@ -170,7 +190,9 @@ class NeuronBlockRule:
         for i in block.continuous_indices:
             block.N[i].domain = pyo.NonNegativeReals
 
-        block.input = pyo.Var(bounds=(model_data['input_lb_dict'][f"{nl},{no},{ni}"], model_data['input_ub_dict'][f"{nl},{no},{ni}"]))
+        block.input = pyo.Var(bounds=
+                              (model_data['input_lb_dict'][f"{nl},{no},{ni}"],
+                               model_data['input_ub_dict'][f"{nl},{no},{ni}"]))
         block.spline_output = pyo.Var(domain=pyo.Reals)
         block.silu_output = pyo.Var(domain=pyo.Reals)
         block.silu_output.setlb(-2.78464596867598e-01)
@@ -195,15 +217,19 @@ class NeuronBlockRule:
         for j in range(1, degree + 1):
             for i in range(coefs_size + degree - j):
                 block.constraints.add(
-                    block.N[i, j] == (block.input - model_data['knots_dict'][f"{nl},{no},{ni},{i}"]) / 
-                    (model_data['knots_dict'][f"{nl},{no},{ni},{i + j}"] - model_data['knots_dict'][f"{nl},{no},{ni},{i}"]) * block.N[i, j - 1] +
+                    block.N[i, j] == (
+                        block.input - model_data['knots_dict'][f"{nl},{no},{ni},{i}"]) /
+                    (model_data['knots_dict'][f"{nl},{no},{ni},{i + j}"] -
+                     model_data['knots_dict'][f"{nl},{no},{ni},{i}"]) * block.N[i, j - 1] +
                     (model_data['knots_dict'][f"{nl},{no},{ni},{i + j + 1}"] - block.input) /
-                    (model_data['knots_dict'][f"{nl},{no},{ni},{i + j + 1}"] - model_data['knots_dict'][f"{nl},{no},{ni},{i + 1}"]) * block.N[i + 1, j - 1]
+                    (model_data['knots_dict'][f"{nl},{no},{ni},{i + j + 1}"] -
+                     model_data['knots_dict'][f"{nl},{no},{ni},{i + 1}"]) * block.N[i + 1, j - 1]
                 )
 
         # Spline output
         block.constraints.add(
-            sum(model_data['coefs_dict'][f"{nl},{no},{ni},{i}"] * block.N[i, degree] for i in range(coefs_size)) == block.spline_output
+            sum(model_data['coefs_dict'][f"{nl},{no},{ni},{i}"] *
+                block.N[i, degree] for i in range(coefs_size)) == block.spline_output
         )
 
         # SiLU activation function
@@ -211,8 +237,9 @@ class NeuronBlockRule:
 
         # Neuron output
         block.constraints.add(
-            block.neuron_output == model_data['scale_base_dict'][f"{nl},{no},{ni}"] * block.silu_output +
-                                 model_data['scale_sp_dict'][f"{nl},{no},{ni}"] * block.spline_output
+            block.neuron_output ==
+            model_data['scale_base_dict'][f"{nl},{no},{ni}"] * block.silu_output +
+            model_data['scale_sp_dict'][f"{nl},{no},{ni}"] * block.spline_output
         )
 
         # Partition of unity constraints
