@@ -1,7 +1,11 @@
-import pyomo.environ as pyo
+"""Module to create a Pyomo model by reading a trained KAN model object.
+   This module imports the layer class and completes all the connections
+   from the input to the output layer.
+   The bounds on unscaled input and output variables should be defined here."""
 import json
 import argparse
-from Pyomo_KAN_layer import LayerBlockRule
+import pyomo.environ as pyo
+from pyomo_kan_layer import LayerBlockRule
 
 # Function to parse command-line arguments
 def parse_args():
@@ -11,9 +15,12 @@ def parse_args():
     Returns:
         argparse.Namespace: Parsed arguments with the path to the JSON data file.
     """
-    parser = argparse.ArgumentParser(description='Create a Pyomo model using the provided JSON data file.')
-    parser.add_argument('json_file', type=str, help='Path to the JSON data file.')
-    parser.add_argument('options_file', type=str, help='Path to the options JSON file.')
+    parser = argparse.ArgumentParser(
+        description='Create a Pyomo model using the provided JSON data file.')
+    parser.add_argument(
+        'json_file', type=str, help='Path to the JSON data file.')
+    parser.add_argument(
+        'options_file', type=str, help='Path to the options JSON file.')
     return parser.parse_args()
 
 # Function to load model data from a JSON file
@@ -27,7 +34,7 @@ def load_model_data(json_file):
     Returns:
         dict: Parsed JSON data as a Python dictionary.
     """
-    with open(json_file, 'r') as f:
+    with open(json_file, 'r', encoding="utf-8") as f:
         return json.load(f)
 
 # Main function to create the Pyomo model
@@ -77,14 +84,16 @@ def main(json_file, options_file):
     model.layer_block = pyo.Block(model.layers, rule=layer_block_rule)
 
     # Define unscaled input and output variables
-    model.unscaled_inputs = pyo.Var(model.layer_block[0].inputs, bounds=(-2.048, 2.048))  # Input bounds
-    model.unscaled_outputs = pyo.Var(model.layer_block[depth - 2].outputs)  # Outputs from the last layer
+    model.unscaled_inputs = pyo.Var(
+        model.layer_block[0].inputs, bounds=(-2.048, 2.048))  # Input bounds
+    model.unscaled_outputs = pyo.Var(
+        model.layer_block[depth - 2].outputs)  # Outputs from the last layer
 
     # Add input constraints for the first layer
     for i in range(num_inputs_dict["0"]):
         # Scale the input variables
         model.layer_block[0].constraints.add(
-            model.layer_block[0].neurons[0, i].input * std_input_dict[f"{i}"] == 
+            model.layer_block[0].neurons[0, i].input * std_input_dict[f"{i}"] ==
             (model.unscaled_inputs[i] - mean_input_dict[f"{i}"])
         )
     for i in range(num_inputs_dict["0"]):
@@ -100,14 +109,15 @@ def main(json_file, options_file):
             for j in range(num_outputs_dict[str(l)]):
                 # Set the input of the current layer neurons to the output of the previous layer
                 model.layer_block[l].constraints.add(
-                    model.layer_block[l].neurons[j, i].input == model.layer_block[l - 1].layer_outputs[i]
+                    model.layer_block[l].neurons[j, i].input ==
+                    model.layer_block[l - 1].layer_outputs[i]
                 )
 
     # Add output constraints for the last layer
     for i in range(num_outputs_dict[str(depth - 2)]):
         # Scale the outputs
         model.layer_block[depth - 2].constraints.add(
-            model.layer_block[depth - 2].layer_outputs[i] * std_output_dict[f"{i}"] == 
+            model.layer_block[depth - 2].layer_outputs[i] * std_output_dict[f"{i}"] ==
             (model.unscaled_outputs[i] - mean_output_dict[f"{i}"])
         )
 
@@ -119,5 +129,5 @@ def main(json_file, options_file):
 # Entry point for the script
 if __name__ == "__main__":
     args = parse_args()
-    model = main(args.json_file, args.options_file)
+    kan_model = main(args.json_file, args.options_file)
     print("Model creation complete.")
