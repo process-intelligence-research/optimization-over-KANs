@@ -1,6 +1,13 @@
-import numpy as np
+"""Module to read a trained KAN model object, conduct one round of
+   feasibility-based bounds tightening and export the model parameters
+   (weights, biases, and spline coefficients) and variable bounds
+   as a JSON file.
+   The JSON file is read to create a Pyomo model instance for a KAN."""
+
 import math
 import json
+import numpy as np
+
 
 def extend_grid(grid, k_extend=0):
     """
@@ -194,5 +201,5 @@ def export_to_json(data, filename):
     --------
     None
     """
-    with open(filename, 'w') as f:
+    with open(filename, 'w', encoding="utf-8") as f:
         json.dump(data, f, indent=4)
