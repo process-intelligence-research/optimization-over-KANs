@@ -15,18 +15,7 @@ If you use the formulation from this paper, please consider citing it as describ
 ### Features:
 - **XXX** as [Pyomo](https://github.com/Pyomo/pyomo) models.
 
-### Citation
-Please reference this software package as:
-```
-@InProceedings{pyDEXPI,
-  author    = { and Schweidtmann, Artur M},
-  booktitle = {},
-  title     = {},
-  year      = {2025},
-  address   = {},
-  month     = {},
-}
-```
+
 
 ## Details about the files in the repository
 The description of different files in this repository is provided below to help reproduce the results from the paper:<br>
@@ -50,6 +39,19 @@ The description of different files in this repository is provided below to help 
 | <img src="https://github.com/user-attachments/assets/65612774-b784-4a37-b5ba-8430d046a723" width="100" height="100" /> | [Tanuj Karia](https://www.pi-research.org/author/tanuj-karia/) | <a href="https://www.linkedin.com/in/tanujkaria/" rel="nofollow noreferrer"> <img src="https://i.sstatic.net/gVE0j.png" width="20"> </a> <a href="https://scholar.google.com/citations?user=xNjNE2cAAAAJ&hl=en" rel="nofollow noreferrer"> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Google_Scholar_logo.svg/512px-Google_Scholar_logo.svg.png?20200110094142" width="20"> </a> |
 | <img src="https://github.com/user-attachments/assets/b8ad6d34-356a-44be-b34a-d36ae3919fd2" width="100" height="100" /> | [Giacomo Lastrucci](https://www.pi-research.org/author/giacomo-lastrucci/) | <a href="https://www.linkedin.com/in/giacomo-lastrucci/" rel="nofollow noreferrer"> <img src="https://i.sstatic.net/gVE0j.png" width="20"> </a> <a href="https://scholar.google.com/citations?user=P0_vdtQAAAAJ&hl=en" rel="nofollow noreferrer"> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Google_Scholar_logo.svg/512px-Google_Scholar_logo.svg.png?20200110094142" width="14"> </a> |
 | <img src="https://github.com/user-attachments/assets/021e7648-2f69-4db4-a50a-ddb4d409ce5e" width="100" height="100"> | [Artur M. Schweidtmann](https://www.pi-research.org/author/artur-schweidtmann/) | <a href="https://www.linkedin.com/in/schweidtmann/" rel="nofollow noreferrer"> <img src="https://i.sstatic.net/gVE0j.png" width="20"> </a> <a href="https://scholar.google.com/citations?user=g-GwouoAAAAJ&hl=en" rel="nofollow noreferrer"> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Google_Scholar_logo.svg/512px-Google_Scholar_logo.svg.png?20200110094142" width="14"> </a> |
+
+## Reference
+If you use this package, please reference this software package as:
+```
+@InProceedings{pyDEXPI,
+  author    = { and Schweidtmann, Artur M},
+  booktitle = {},
+  title     = {},
+  year      = {2025},
+  address   = {},
+  month     = {},
+}
+```
 
 
 ## Copyright and license
