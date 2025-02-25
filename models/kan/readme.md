@@ -7,7 +7,7 @@ The models are provided for the four test functions considered in the paper list
 
 Each folder contains json files whose names are appended as:
 - \<function\>_\<H\>X for all models used to study the effect of grid-size on optimization effort
-- \<function\>_\<H\>X_\<N\>X for all models used to study the effect of number of neurons in one hidden layer on optimization effort
+- \<function\>_\<H\>X\_\<N\>X for all models used to study the effect of number of neurons in one hidden layer on optimization effort
 - \<function\>_\<H\>X for all models used to study the effect of number of layers on optimization effort
 
 For example, a file named as `Peaks_H1_N2_G6.json` corresponds to a KAN with one hidden layer, two neurons in the hidden layer with six grid points modelling the peaks function.
