@@ -2,8 +2,8 @@
 
 ## Overview
 
-This repository contains the [Pyomo](https://github.com/Pyomo/pyomo) files describing the proposed Mixed-Integer Nonlinear Programming formulation in the paper **`Deterministic Global Optimization over trained Kolmogorov Arnold Networks`** (TODO: Add the link to preprint once submitted). <br>
-In addition, the repository also contain Python scripts to train multi-layer perceptrons (MLP) using Tensorflow and then optimizing over the trained MLPs using [OMLT](https://github.com/cog-imperial/OMLT). <br>
+This repository contains the [Pyomo](https://github.com/Pyomo/pyomo) files describing the proposed Mixed-Integer Nonlinear Programming (MINLP) formulation in the paper **`Deterministic Global Optimization over trained Kolmogorov Arnold Networks`** (TODO: Add the link to preprint once submitted). <br>
+In addition, the repository also contain Python scripts to train multilayer perceptrons (MLP) using Tensorflow and then optimizing over the trained MLPs using [OMLT](https://github.com/cog-imperial/OMLT). <br>
 Effectively, this repository contains all the files needed to reproduce the results in the paper:<br>
 (TODO: Add a BibTeX reference to the pre-print) <br>
 If you use the formulation from this paper, please consider citing it as described below. <br>
