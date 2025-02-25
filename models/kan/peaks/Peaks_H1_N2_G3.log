@@ -1,0 +1,112 @@
+Solver command line: ['C:\\Program Files\\SCIPOptSuite 9.0.1\\bin\\scip.exe', 'C:\\Users\\tkaria\\AppData\\Local\\Temp\\tmpeauutxtb.pyomo', '-AMPL']
+
+SCIP version 9.0.1 [precision: 8 byte] [memory: block] [mode: optimized] [LP solver: Soplex 7.0.1] [GitHash: bebb64304e]
+Copyright (c) 2002-2024 Zuse Institute Berlin (ZIB)
+
+External libraries: 
+  Soplex 7.0.1         Linear Programming Solver developed at Zuse Institute Berlin (soplex.zib.de) [GitHash: 1cc71921]
+  CppAD 20180000.0     Algorithmic Differentiation of C++ algorithms developed by B. Bell (github.com/coin-or/CppAD)
+  MPIR 3.0.0           Multiple Precision Integers and Rationals Library developed by W. Hart (mpir.org)
+  ZIMPL 3.6.0          Zuse Institute Mathematical Programming Language developed by T. Koch (zimpl.zib.de)
+  AMPL/MP 690e9e7      AMPL .nl file reader library (github.com/ampl/mp)
+  PaPILO 2.2.1         parallel presolve for integer and linear optimization (github.com/scipopt/papilo) (built with TBB) [GitHash: 3f1f0d53]
+  bliss 0.77           Computing Graph Automorphisms by T. Junttila and P. Kaski (users.aalto.fi/~tjunttil/bliss)
+  sassy 1.1            Symmetry preprocessor by Markus Anders (github.com/markusa4/sassy)
+  Ipopt 3.12.9         Interior Point Optimizer developed by A. Waechter et.al. (github.com/coin-or/Ipopt)
+
+reading user parameter file <scip.set>
+===========================
+
+limits/time = 7200
+
+read problem <C:\Users\tkaria\AppData\Local\Temp\tmpeauutxtb.pyomo.nl>
+============
+
+original problem has 210 variables (0 bin, 54 int, 0 impl, 156 cont) and 286 constraints
+
+solve problem
+=============
+
+solution violates original bounds of variable <x151> [1.40709,8.31769] solution value <0>
+all 1 solutions given by solution candidate storage are infeasible
+
+presolving:
+(round 1, fast)       46 del vars, 116 del conss, 0 add conss, 242 chg bounds, 26 chg sides, 26 chg coeffs, 0 upgd conss, 0 impls, 6 clqs
+(round 2, fast)       70 del vars, 126 del conss, 0 add conss, 262 chg bounds, 26 chg sides, 26 chg coeffs, 0 upgd conss, 0 impls, 6 clqs
+(round 3, fast)       80 del vars, 126 del conss, 0 add conss, 264 chg bounds, 26 chg sides, 26 chg coeffs, 0 upgd conss, 0 impls, 6 clqs
+(round 4, exhaustive) 80 del vars, 126 del conss, 0 add conss, 264 chg bounds, 26 chg sides, 26 chg coeffs, 32 upgd conss, 0 impls, 6 clqs
+   (0.0s) probing cycle finished: starting next cycle
+(round 5, exhaustive) 81 del vars, 126 del conss, 0 add conss, 267 chg bounds, 26 chg sides, 0 chg coeffs, 32 upgd conss, 308 impls, 20 clqs
+(round 6, fast)       81 del vars, 128 del conss, 0 add conss, 268 chg bounds, 26 chg sides, 0 chg coeffs, 32 upgd conss, 308 impls, 20 clqs
+(round 7, fast)       82 del vars, 129 del conss, 0 add conss, 271 chg bounds, 26 chg sides, 0 chg coeffs, 32 upgd conss, 308 impls, 20 clqs
+(round 8, fast)       83 del vars, 129 del conss, 0 add conss, 272 chg bounds, 26 chg sides, 0 chg coeffs, 32 upgd conss, 308 impls, 20 clqs
+   (0.0s) probing cycle finished: starting next cycle
+   (0.0s) symmetry computation started: requiring (bin +, int +, cont +), (fixed: bin -, int -, cont -)
+   (0.0s) no symmetry present (symcode time: 0.00)
+presolving (9 rounds: 9 fast, 3 medium, 3 exhaustive):
+ 83 deleted vars, 129 deleted constraints, 0 added constraints, 272 tightened bounds, 0 added holes, 26 changed sides, 0 changed coefficients
+ 309 implications, 20 cliques
+presolved problem has 127 variables (19 bin, 0 int, 0 impl, 108 cont) and 157 constraints
+     25 constraints of type <varbound>
+      6 constraints of type <setppc>
+     28 constraints of type <linear>
+     98 constraints of type <nonlinear>
+Presolving Time: 0.00
+
+ time | node  | left  |LP iter|LP it/n|mem/heur|mdpt |vars |cons |rows |cuts |sepa|confs|strbr|  dualbound   | primalbound  |  gap   | compl. 
+  0.0s|     1 |     0 |   628 |     - |  6438k |   0 | 316 | 157 | 371 |   0 |  0 |   0 |   0 |-3.724300e+00 |      --      |    Inf | unknown
+NLP solver in subNLP heuristic for problem <C:\Users\tkaria\AppData\Local\Temp\tmpeauutxtb.pyomo> returned with bad termination status 9. This was the 1st successive time.
+  0.0s|     1 |     0 |   683 |     - |  6726k |   0 | 316 | 157 | 390 |  19 |  1 |   0 |   0 |-3.724300e+00 |      --      |    Inf | unknown
+  0.0s|     1 |     0 |   724 |     - |  6868k |   0 | 316 | 157 | 405 |  34 |  2 |   0 |   0 |-3.724300e+00 |      --      |    Inf | unknown
+  0.0s|     1 |     0 |   763 |     - |  6939k |   0 | 316 | 157 | 418 |  47 |  3 |   0 |   0 |-3.724300e+00 |      --      |    Inf | unknown
+  0.0s|     1 |     0 |   789 |     - |  7005k |   0 | 316 | 157 | 431 |  60 |  4 |   0 |   0 |-3.724300e+00 |      --      |    Inf | unknown
+  0.0s|     1 |     0 |   807 |     - |  7072k |   0 | 316 | 157 | 441 |  70 |  5 |   0 |   0 |-3.724300e+00 |      --      |    Inf | unknown
+  0.0s|     1 |     0 |   836 |     - |  7123k |   0 | 316 | 157 | 457 |  86 |  6 |   0 |   0 |-3.724300e+00 |      --      |    Inf | unknown
+  0.0s|     1 |     0 |   859 |     - |  7186k |   0 | 316 | 157 | 466 |  95 |  7 |   0 |   0 |-3.724300e+00 |      --      |    Inf | unknown
+  0.0s|     1 |     0 |   883 |     - |  7284k |   0 | 316 | 157 | 480 | 109 |  8 |   0 |   0 |-3.724300e+00 |      --      |    Inf | unknown
+  0.0s|     1 |     0 |   888 |     - |  7354k |   0 | 316 | 157 | 486 | 115 |  9 |   0 |   0 |-3.724300e+00 |      --      |    Inf | unknown
+  0.0s|     1 |     0 |   896 |     - |  7430k |   0 | 316 | 157 | 491 | 120 | 10 |   0 |   0 |-3.724300e+00 |      --      |    Inf | unknown
+  0.0s|     1 |     0 |   903 |     - |  7484k |   0 | 316 | 157 | 493 | 122 | 11 |   0 |   0 |-3.724300e+00 |      --      |    Inf | unknown
+  1.0s|     1 |     0 |  7398 |     - |  7501k |   0 | 316 | 157 | 493 | 122 | 11 |   0 |   0 |-3.724300e+00 |      --      |    Inf | unknown
+  1.0s|     1 |     0 |  7439 |     - |  7791k |   0 | 316 | 157 | 516 | 145 | 12 |   0 |   0 |-3.724300e+00 |      --      |    Inf | unknown
+  1.0s|     1 |     0 |  7479 |     - |  7852k |   0 | 316 | 157 | 533 | 162 | 13 |   0 |   0 |-3.724300e+00 |      --      |    Inf | unknown
+ time | node  | left  |LP iter|LP it/n|mem/heur|mdpt |vars |cons |rows |cuts |sepa|confs|strbr|  dualbound   | primalbound  |  gap   | compl. 
+  1.0s|     1 |     0 |  7493 |     - |  7911k |   0 | 316 | 157 | 301 | 171 | 14 |   0 |   0 |-3.724300e+00 |      --      |    Inf | unknown
+  1.0s|     1 |     0 |  7508 |     - |  7941k |   0 | 316 | 157 | 307 | 177 | 15 |   0 |   0 |-3.724300e+00 |      --      |    Inf | unknown
+  1.0s|     1 |     0 |  7520 |     - |  7973k |   0 | 316 | 157 | 313 | 183 | 16 |   0 |   0 |-3.724300e+00 |      --      |    Inf | unknown
+  1.0s|     1 |     0 |  7528 |     - |  8006k |   0 | 316 | 157 | 320 | 190 | 17 |   0 |   0 |-3.724300e+00 |      --      |    Inf | unknown
+  1.0s|     1 |     0 |  7533 |     - |  8039k |   0 | 316 | 157 | 322 | 192 | 18 |   0 |   0 |-3.724300e+00 |      --      |    Inf | unknown
+  1.0s|     1 |     0 |  7541 |     - |  8070k |   0 | 316 | 157 | 327 | 197 | 19 |   0 |   0 |-3.724300e+00 |      --      |    Inf | unknown
+  1.0s|     1 |     0 |  7546 |     - |  8105k |   0 | 316 | 157 | 288 | 201 | 20 |   0 |   0 |-3.724300e+00 |      --      |    Inf | unknown
+  1.0s|     1 |     0 |  7551 |     - |  8105k |   0 | 316 | 157 | 293 | 206 | 21 |   0 |   0 |-3.724300e+00 |      --      |    Inf | unknown
+  1.0s|     1 |     0 |  7554 |     - |  8107k |   0 | 316 | 157 | 295 | 208 | 22 |   0 |   0 |-3.724300e+00 |      --      |    Inf | unknown
+NLP solver in subNLP heuristic for problem <C:\Users\tkaria\AppData\Local\Temp\tmpeauutxtb.pyomo> returned with bad termination status 9. This was the 2nd successive time.
+  2.0s|     1 |     0 |  9811 |     - |  8221k |   0 | 316 | 157 | 295 | 208 | 22 |   0 |  10 |-3.724300e+00 |      --      |    Inf | unknown
+  2.0s|     1 |     0 |  9828 |     - |  8221k |   0 | 316 | 157 | 311 | 224 | 23 |   0 |  10 |-3.724300e+00 |      --      |    Inf | unknown
+  2.0s|     1 |     0 |  9829 |     - |  8230k |   0 | 316 | 157 | 311 | 224 | 24 |   0 |  16 |-3.724300e+00 |      --      |    Inf | unknown
+  2.0s|     1 |     0 |  9840 |     - |  8237k |   0 | 316 | 157 | 321 | 234 | 25 |   0 |  16 |-3.724300e+00 |      --      |    Inf | unknown
+  2.0s|     1 |     0 |  9843 |     - |  8240k |   0 | 316 | 157 | 323 | 236 | 26 |   0 |  16 |-3.724300e+00 |      --      |    Inf | unknown
+  2.0s|     1 |     2 |  9844 |     - |  8243k |   0 | 316 | 157 | 323 | 236 | 26 |   0 |  17 |-3.724300e+00 |      --      |    Inf | unknown
+ time | node  | left  |LP iter|LP it/n|mem/heur|mdpt |vars |cons |rows |cuts |sepa|confs|strbr|  dualbound   | primalbound  |  gap   | compl. 
+d 3.0s|    10 |     7 | 10084 |1016.3 |nlpdivin|   7 | 316 | 157 | 303 | 356 |  4 |   0 |  17 |-3.724300e+00 | 6.203703e-01 |    Inf |   2.34%
+d 5.0s|    38 |    25 | 10961 | 270.9 |nlpdivin|  10 | 316 | 157 | 282 | 812 |  4 |   1 |  25 |-3.724300e+00 |-4.148892e-01 | 797.66%|  13.72%
+L 5.0s|    69 |    46 | 11531 | 155.8 |    alns|  20 | 316 | 157 | 388 |1144 |  2 |   1 |  25 |-3.724300e+00 |-7.430684e-01 | 401.21%|  19.23%
+  5.0s|   100 |    65 | 12293 | 114.7 |  9406k |  21 | 316 | 157 | 374 |1531 |  4 |   1 |  30 |-3.724300e+00 |-7.430684e-01 | 401.21%|  28.44%
+L 5.0s|   121 |    78 | 12933 | 100.0 |    alns|  21 | 316 | 157 | 399 |1836 |  3 |   1 |  31 |-3.724300e+00 |-7.890142e-01 | 372.02%|  28.45%
+  6.0s|   200 |   127 | 15195 |  71.6 |    10M |  23 | 316 | 157 | 303 |3012 |  3 |   3 |  47 |-3.724300e+00 |-7.890142e-01 | 372.02%|  32.79%
+* 6.0s|   215 |    53 | 15474 |  67.9 |    LP  |  23 | 316 | 157 | 381 |3193 |  2 |   4 |  47 |-3.724300e+00 |-3.012743e+00 |  23.62%|  45.30%
+* 6.0s|   295 |    16 | 17850 |  57.5 |    LP  |  25 | 316 | 157 | 440 |4584 |  3 |   5 |  47 |-3.724300e+00 |-3.714500e+00 |   0.26%|  49.84%
+  6.0s|   300 |    19 | 17949 |  56.9 |    11M |  25 | 316 | 157 | 401 |4649 |  3 |   5 |  47 |-3.724300e+00 |-3.714500e+00 |   0.26%|  49.84%
+* 6.0s|   344 |    20 | 18778 |  52.0 |    LP  |  32 | 316 | 157 | 470 |5145 |  2 |   5 |  47 |-3.724300e+00 |-3.723804e+00 |   0.01%|  52.67%
+* 6.0s|   350 |    20 | 18855 |  51.3 |    LP  |  32 | 316 | 157 | 461 |5195 |  2 |   5 |  47 |-3.724300e+00 |-3.724195e+00 |   0.00%|  52.67%
+* 6.0s|   361 |    19 | 19114 |  50.5 |    LP  |  33 | 316 | 157 | 469 |5320 |  2 |   5 |  47 |-3.724300e+00 |-3.724257e+00 |   0.00%|  57.39%
+* 6.0s|   364 |    20 | 19137 |  50.1 |    LP  |  35 | 316 | 157 | 479 |5338 |  4 |   5 |  47 |-3.724300e+00 |-3.724285e+00 |   0.00%|  57.39%
+* 6.0s|   366 |     0 | 19147 |  49.9 |    LP  |  36 | 316 | 157 | 480 |5347 |  2 |   5 |  47 |-3.724300e+00 |-3.724300e+00 |   0.00%| 100.00%
+
+SCIP Status        : problem is solved [optimal solution found]
+Solving Time (sec) : 6.00
+Solving Nodes      : 366
+Primal Bound       : -3.72429998905987e+00 (11 solutions)
+Dual Bound         : -3.72429998905987e+00
+Gap                : 0.00 %
+
