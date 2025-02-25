@@ -1,8 +1,5 @@
 # optimization-over-KANs by [<img src="https://github.com/user-attachments/assets/d9223850-3821-42ac-8602-3fe250199145" height="40">](https://www.pi-research.org/)
 
-  <img src="./docs/logos/pydexpi_logo.png" alt="pyDEXPI logo" width="700">  
-</p>
-
 ## Overview
 
 This repository contains the [Pyomo](https://github.com/Pyomo/pyomo) files describing the proposed Mixed-Integer Nonlinear Programming formulation in the paper **`Deterministic Global Optimization over trained Kolmogorov Arnold Networks`** (TODO: Add the link to preprint once submitted). <br>
