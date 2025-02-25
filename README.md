@@ -10,10 +10,13 @@ This repository contains the [Pyomo](https://github.com/Pyomo/pyomo) files descr
 In addition, the repository also contain Python scripts to train multi-layer perceptrons (MLP) using Tensorflow and then optimizing over the trained MLPs using [OMLT](https://github.com/cog-imperial/OMLT). <br>
 Effectively, this repository contains all the files needed to reproduce the results in the paper:<br>
 (TODO: Add a BibTeX reference to the pre-print) <br>
-If you use the formulation from this paper, please consider citing it as described above. <br>
+If you use the formulation from this paper, please consider citing it as described below. <br>
 
-### Features:
-- **XXX** as [Pyomo](https://github.com/Pyomo/pyomo) models.
+### Folder structure:
+- **src** contains all [Pyomo](https://github.com/Pyomo/pyomo) files required to create a Pyomo model object of a trained KAN.
+- **util** contains all scripts required to reproduce the results in the paper relating to data generation, training of KAN or MLP models.
+- **data** contains all training and testing datasets used for training the models in addition to the scaler files in JSON format required for optimizing MLPs using [OMLT](https://github.com/cog-imperial/OMLT).
+- **models** contains all KAN models in JSON format which are required to instantiate a Pyomo model object and all MLP models in Keras format.
 
 
 
