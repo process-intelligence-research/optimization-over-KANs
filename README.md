@@ -1,6 +1,5 @@
-# optimization-over-KANs by [<img src="./docs/logos/Process_Intelligence_Black_Horizontal.png" alt="Process Intelligence Research logo" height="40">](https://www.pi-research.org/)
+# optimization-over-KANs by [<img src="https://github.com/user-attachments/assets/d9223850-3821-42ac-8602-3fe250199145" height="40">](https://www.pi-research.org/)
 
-<p align="center">
   <img src="./docs/logos/pydexpi_logo.png" alt="pyDEXPI logo" width="700">  
 </p>
 
