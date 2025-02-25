@@ -1,4 +1,4 @@
-# optimization-over-KANs by [<img src="https://github.com/user-attachments/assets/d9223850-3821-42ac-8602-3fe250199145" height="40">](https://www.pi-research.org/)
+# optimization-over-KANs by [<img src="https://github.com/user-attachments/assets/fa29236a-77fa-44b5-aed6-2c5fe8ce0a0d" height="40">](https://www.pi-research.org/)
 
 ## Overview
 
