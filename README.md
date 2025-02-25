@@ -23,7 +23,7 @@ It is important to note to change the bounds on unscaled input variables dependi
 - `KAN_formulation_options.json` file allows you to specify the formulation for the KAN that will be optimized. Refer to the paper for additional details.
 - To optimize over a trained MLP simply execute the script `opt_mlp` by running the following command via a terminal. We show an example for bash:
 ```sh
-python -m mlp_opt --keras_model models/mlp/peaks/peaks_mlp_relu_1_16.keras --scaler_file data/peaks_scaler.json --formulation bigm --solver scip --num_inputs 2 --input_lb -3 --input_ub 3 --time_limit 7200
+python -m opt_mlp --keras_model models/mlp/peaks/peaks_mlp_relu_1_16.keras --scaler_file data/peaks_scaler.json --formulation bigm --solver scip --num_inputs 2 --input_lb -3 --input_ub 3 --time_limit 7200
 ```
 All the arguments shown in the above example should be passed with the appropriate values.
 For all argument parsing suitable help can be obtained via command line.
