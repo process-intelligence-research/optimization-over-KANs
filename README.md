@@ -19,13 +19,15 @@ If you use the formulation from this paper, please consider citing it as describ
 ```sh
 python -m opt_kan models/kan/peaks/Peaks_H1_N2_G3.json KAN_formulation_options.json scip
 ```
+All the arguments shown in the above example should be passed with the appropriate values.
 It is important to note to change the bounds on unscaled input variables depending on the case study, you need to modify the `create_kan.py` script which is present in **src** directory.
 - `KAN_formulation_options.json` file allows you to specify the formulation for the KAN that will be optimized. Refer to the paper for additional details.
-- To optimize over a trained MLPsimply execute the script `opt_mlp` by running the following command via a terminal. We show an example for bash:
+- To optimize over a trained MLP simply execute the script `opt_mlp` by running the following command via a terminal. We show an example for bash:
 ```sh
 python -m mlp_opt --keras_model models/mlp/peaks/peaks_mlp_relu_1_16.keras --scaler_file data/peaks_scaler.json --formulation bigm --solver scip --num_inputs 2 --input_lb -3 --input_ub 3 --time_limit 7200
 ```
 All the arguments shown in the above example should be passed with the appropriate values.
+For all argument parsing suitable help can be obtained via command line.
 
 
 ## Contributors
