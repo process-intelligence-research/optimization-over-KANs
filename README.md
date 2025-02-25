@@ -14,6 +14,18 @@ If you use the formulation from this paper, please consider citing it as describ
 - **data** contains all training and testing datasets used for training the models in addition to the scaler files in JSON format required for optimizing MLPs using [OMLT](https://github.com/cog-imperial/OMLT).
 - **models** contains all KAN models in JSON format which are required to instantiate a Pyomo model object and all MLP models in Keras format.
 
+### Demonstration of functionality:
+- To optimize over a trained KAN simply execute the script `opt_kan` by running the following command via a terminal. We show an example for bash:
+```sh
+python -m opt_kan models/kan/peaks/Peaks_H1_N2_G3.json KAN_formulation_options.json scip
+```
+It is important to note to change the bounds on unscaled input variables depending on the case study, you need to modify the `create_kan.py` script which is present in **src** directory.
+- `KAN_formulation_options.json` file allows you to specify the formulation for the KAN that will be optimized. Refer to the paper for additional details.
+- To optimize over a trained MLPsimply execute the script `opt_mlp` by running the following command via a terminal. We show an example for bash:
+```sh
+python -m mlp_opt --keras_model models/mlp/peaks/peaks_mlp_relu_1_16.keras --scaler_file data/peaks_scaler.json --formulation bigm --solver scip --num_inputs 2 --input_lb -3 --input_ub 3 --time_limit 7200
+```
+All the arguments shown in the above example should be passed with the appropriate values.
 
 
 ## Contributors
