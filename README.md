@@ -46,13 +46,11 @@ The description of different files in this repository is provided below to help 
 
 ## Contributors
 
-| | | |
-
+|  | Name | Links |
 | --- | --- | --- |
+| <img src="https://github.com/user-attachments/assets/65612774-b784-4a37-b5ba-8430d046a723" width="100" height="100" /> | [Tanuj Karia](https://www.pi-research.org/author/tanuj-karia/) | <a href="https://www.linkedin.com/in/tanujkaria/" rel="nofollow noreferrer"> <img src="https://i.sstatic.net/gVE0j.png" width="14"> </a> <a href="https://scholar.google.com/citations?user=xNjNE2cAAAAJ&hl=en" rel="nofollow noreferrer"> <img src="docs/logos/google-scholar-square.svg" width="14"> </a> |
+| <img src="docs/photos/Artur.jpg" width="100" height="100"> | [Artur M. Schweidtmann](https://www.pi-research.org/author/artur-schweidtmann/) | <a href="https://www.linkedin.com/in/schweidtmann/" rel="nofollow noreferrer"> <img src="https://i.sstatic.net/gVE0j.png" width="14"> </a> <a href="https://scholar.google.com/citations?user=g-GwouoAAAAJ&hl=en" rel="nofollow noreferrer"> <img src="docs/logos/google-scholar-square.svg" width="14"> </a> |
 
-| <img src="https://github.com/user-attachments/assets/65612774-b784-4a37-b5ba-8430d046a723" width="100" height="100" /> | [Tanuj Karia](https://www.pi-research.org/author/tanuj-karia/) | <a href="https://www.linkedin.com/in/ta![Uploading tk_image_thumbnail.jpg…]()
-nujkaria/" rel="nofollow noreferrer"> <img src="https://i.sstatic.net/gVE0j.png" >  </a> <a href="https://scholar.google.com/citations?user=xNjNE2cAAAAJ&hl=en" rel="nofollow noreferrer"> <img src="docs/logos/google-scholar-square.svg" width="14">  </a> |
-| <img src="docs/photos/Artur.jpg" width="50"> | [Artur M. Schweidtmann](https://www.pi-research.org/author/artur-schweidtmann/) | <a href="https://www.linkedin.com/in/schweidtmann/" rel="nofollow noreferrer"> <img src="https://i.sstatic.net/gVE0j.png" >  </a> <a href="https://scholar.google.com/citations?user=g-GwouoAAAAJ&hl=en" rel="nofollow noreferrer"> <img src="docs/logos/google-scholar-square.svg" width="14">  </a> |
 
 ## Copyright and license
 
