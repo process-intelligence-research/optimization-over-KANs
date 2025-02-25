@@ -6,7 +6,7 @@
 import argparse
 import json
 import pyomo.environ as pyo
-from create_kan import main
+from src.create_kan import main
 
 # Function to parse command-line arguments
 def parse_args():
