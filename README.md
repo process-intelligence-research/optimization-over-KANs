@@ -6,7 +6,6 @@ This repository contains the [Pyomo](https://github.com/Pyomo/pyomo) files descr
 In addition, the repository also contain Python scripts to train multilayer perceptrons (MLP) using Tensorflow and then optimizing over the trained MLPs using [OMLT](https://github.com/cog-imperial/OMLT). <br>
 Effectively, this repository contains all the files needed to reproduce the results in the paper:<br>
 (TODO: Add a BibTeX reference to the pre-print) <br>
-If you use the formulation from this paper, please consider citing it as described below. <br>
 
 ### Folder structure:
 - **src** contains all [Pyomo](https://github.com/Pyomo/pyomo) files required to create a Pyomo model object of a trained KAN.
@@ -39,7 +38,7 @@ For all argument parsing suitable help can be obtained via command line.
 | <img src="https://github.com/user-attachments/assets/021e7648-2f69-4db4-a50a-ddb4d409ce5e" width="100" height="100"> | [Artur M. Schweidtmann](https://www.pi-research.org/author/artur-schweidtmann/) | <a href="https://www.linkedin.com/in/schweidtmann/" rel="nofollow noreferrer"> <img src="https://i.sstatic.net/gVE0j.png" width="20"> </a> <a href="https://scholar.google.com/citations?user=g-GwouoAAAAJ&hl=en" rel="nofollow noreferrer"> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Google_Scholar_logo.svg/512px-Google_Scholar_logo.svg.png?20200110094142" width="14"> </a> |
 
 ## Reference
-If you use this package, please reference this software package as:
+If you use the formulation from this paper, please consider citing it as described below. <br>
 ```
 @InProceedings{pyDEXPI,
   author    = { and Schweidtmann, Artur M},
