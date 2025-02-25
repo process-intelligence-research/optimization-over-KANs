@@ -6,7 +6,7 @@ The models are provided for the four test functions considered in the paper list
 4. Rosenbrock function with 10 inputs (denoted as r10)
 
 Each folder contains json files whose names are appended as:
-- \<function\>_\<H\>X for all models used to study the effect of grid-size on optimization effort
+- \<function\>_\<H\>X\_\<N\>X\_\<G\>X for all models used to study the effect of grid-size on optimization effort
 - \<function\>_\<H\>X\_\<N\>X for all models used to study the effect of number of neurons in one hidden layer on optimization effort
 - \<function\>_\<H\>X for all models used to study the effect of number of layers on optimization effort
 
