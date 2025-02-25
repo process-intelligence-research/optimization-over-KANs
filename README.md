@@ -46,7 +46,7 @@ The description of different files in this repository is provided below to help 
 
 ## Contributors
 
-| | | |![tk_image_thumbnail](https://github.com/user-attachments/assets/65612774-b784-4a37-b5ba-8430d046a723)
+| | | |
 
 | --- | --- | --- |
 
