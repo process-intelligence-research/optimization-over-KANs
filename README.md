@@ -1,6 +1,6 @@
 # Deterministic Global Optimization over Trained Kolmogorov-Arnold Networks (KANs) by [<img src="https://github.com/user-attachments/assets/fa29236a-77fa-44b5-aed6-2c5fe8ce0a0d" height="40">](https://www.pi-research.org/)
 
-This repository contains the [Pyomo](https://github.com/Pyomo/pyomo) files describing the proposed Mixed-Integer Nonlinear Programming (MINLP) formulation in the paper **`Deterministic Global Optimization over trained Kolmogorov Arnold Networks`** (TODO: Add the link to preprint once submitted). 
+This repository contains the [Pyomo](https://github.com/Pyomo/pyomo) files describing the proposed Mixed-Integer Nonlinear Programming (MINLP) formulation in the paper [**`Deterministic Global Optimization over trained Kolmogorov Arnold Networks`**](https://doi.org/10.48550/arXiv.2503.02807). 
 
 Additionally, this repository includes:
 - Python scripts to train **Multilayer Perceptrons (MLP)** using TensorFlow.
@@ -48,14 +48,14 @@ python -m opt_mlp --keras_model models/mlp/peaks/peaks_mlp_relu_1_16.keras --sca
 ## Reference
 If you use the formulation from this paper, please consider citing it as described below. <br>
 ```
-@article{KANOptimization2025,
-  author    = {Tanuj Karia and Giacomo Lastrucci and Artur M. Schweidtmann},
-  title     = {Deterministic Global Optimization over Trained Kolmogorov-Arnold Networks},
-  journal   = {XX},
-  year      = {2025},
-  volume    = {XX},
-  pages     = {XXX--XXX},
-  doi       = {XX.XXXX/XXXXXX}
+@misc{karia2025deterministicglobaloptimizationtrained,
+      title={Deterministic Global Optimization over trained Kolmogorov Arnold Networks}, 
+      author={Tanuj Karia and Giacomo Lastrucci and Artur M. Schweidtmann},
+      year={2025},
+      eprint={2503.02807},
+      archivePrefix={arXiv},
+      primaryClass={math.OC},
+      url={https://arxiv.org/abs/2503.02807}, 
 }
 ```
 
