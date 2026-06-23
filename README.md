@@ -71,6 +71,8 @@ If you use the formulation from this paper, please consider citing it as describ
 
 This repository is published under MIT license (see [license file](LICENSE))
 
+Technische Universiteit Delft hereby disclaims all copyright interest in the program “optimization over KANs” written by Artur M. Schweidtmann. Paulien Herder, Dean of Applied Science
+
 Copyright (C) 2025 Artur Schweidtmann Delft University of Technology. 
 
 ## Contact
